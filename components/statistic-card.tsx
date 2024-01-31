@@ -15,10 +15,10 @@ export const StatisticCard = ({ stat, onClick }: StatisticCardProps): JSX.Elemen
       onClick={onClick}
       className={cn(
         'w-full rounded-2xl px-7 py-7',
-        stat.isActive ? 'bg-[#0452ef] text-white' : 'text-secondary cursor-pointer bg-[#121732]'
+        stat.isActive ? 'bg-[#0452ef] text-white' : 'cursor-pointer bg-[#121732] text-secondary'
       )}
     >
-      <header className="flex items-center gap-x-3">
+      <header className="flex flex-wrap items-center gap-x-3">
         <div className={cn('rounded-full p-2', stat.isActive ? 'bg-white' : 'bg-[#383c52]')}>
           <stat.icon className={cn('h-4 w-4', stat.isActive ? 'text-[#060B27]' : 'text-white')} />
         </div>
@@ -26,8 +26,8 @@ export const StatisticCard = ({ stat, onClick }: StatisticCardProps): JSX.Elemen
       </header>
       <main className="mt-4">
         <h2 className="text-2xl font-semibold">{stat.earn}</h2>
-        <div className="mt-2 flex items-center gap-x-2 text-xs">
-          <div className="flex items-center space-x-1">
+        <div className="mt-2 flex flex-wrap items-center gap-x-2 text-xs">
+          <div className="flex flex-wrap items-center space-x-1">
             {stat.trends.isTrend ? (
               <TrendingUp className="h-4 w-4 text-[#20DF4A]" />
             ) : (

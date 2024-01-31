@@ -3,35 +3,22 @@
 import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { BarChart2, BriefcaseIcon, HelpCircle, LogOut } from 'lucide-react'
+import { HelpCircle, LogOut } from 'lucide-react'
 
 import { cn } from '~/lib/utils'
 import { Logo } from '~/components/logo'
+import { links } from '~/constant/sidebar-links'
 
 export const Sidebar = (): JSX.Element => {
   const pathname = usePathname()
 
-  const links = [
-    {
-      href: '/',
-      text: 'Home',
-      icon: BarChart2,
-      badge: 15
-    },
-    {
-      href: '/sniper',
-      text: 'Sniper',
-      icon: BriefcaseIcon
-    }
-  ]
-
   return (
-    <aside className="border-border custom-scrollbar ml-6 flex h-full w-[250px] flex-col overflow-y-auto border-r">
-      <header className="border-border flex items-center space-x-3 rounded-r-full border-b py-7">
+    <aside className="custom-scrollbar ml-6 flex h-full w-[250px] flex-col overflow-y-auto border-r border-border">
+      <header className="flex items-center space-x-3 rounded-r-full border-b border-border py-7">
         <Logo className="h-6 w-6" />
         <h2 className="text-white">Chainsniper</h2>
       </header>
-      <main className="border-border -mt-[1px] h-full rounded-r-[40px] border-b border-t">
+      <main className="-mt-[1px] h-full rounded-r-[40px] border-b border-t border-border">
         <nav className="flex h-full flex-col py-7">
           <ul className="space-y-2">
             {links?.map((link, idx) => {
@@ -52,7 +39,7 @@ export const Sidebar = (): JSX.Element => {
                     />
                     <span className="text-sm">{link.text}</span>
                     {!!link.badge && (
-                      <span className="bg-badge absolute right-0 rounded-full px-2.5 py-0.5 text-xs text-white">
+                      <span className="absolute right-0 rounded-full bg-badge px-2.5 py-0.5 text-xs text-white">
                         {link.badge}
                       </span>
                     )}
@@ -67,7 +54,7 @@ export const Sidebar = (): JSX.Element => {
           </div>
         </nav>
       </main>
-      <footer className="border-border -mt-[1px] rounded-r-full border-t py-7">
+      <footer className="-mt-[1px] rounded-r-full border-t border-border py-7">
         <div role="button" className="flex items-center space-x-3 hover:text-white">
           <LogOut className="h-5 w-5" />
           <span className="text-sm">Log Out</span>

@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
 
+import { Header } from './_components/header'
 import { Sidebar } from './_components/Sidebar'
 
 type MainLayoutProps = {
@@ -8,9 +9,10 @@ type MainLayoutProps = {
 
 export default function MainLayout({ children }: MainLayoutProps): JSX.Element {
   return (
-    <div className="bg-background text-secondary flex h-full overflow-y-auto">
+    <div className="flex h-full overflow-y-auto bg-background text-secondary">
       <Sidebar />
       <main className="custom-scrollbar mx-auto max-w-6xl flex-1 overflow-y-auto p-6">
+        <Header />
         {children}
       </main>
     </div>
