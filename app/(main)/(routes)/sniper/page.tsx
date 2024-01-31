@@ -162,9 +162,8 @@ export default function Sniper(): JSX.Element {
       <textarea
         placeholder="Starting Snipe....."
         className="ring-none mt-5 min-h-[20vh] w-full resize-none bg-[#121732] p-5 text-sm text-white focus:outline-none"
-      >
-        Starting Snipe.....
-      </textarea>
+        defaultValue="Starting Snipe....."
+      />
     </>
   )
 }
