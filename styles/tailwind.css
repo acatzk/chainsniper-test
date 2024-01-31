@@ -71,3 +71,9 @@ body,
     --ring: 212.7 26.8% 83.9%;
   }
 }
+
+@layer components {
+  .custom-scrollbar {
+    @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-700 scrollbar-thumb-rounded-md;
+  }
+}
