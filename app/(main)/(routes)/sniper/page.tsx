@@ -33,129 +33,138 @@ export default function Sniper(): JSX.Element {
   }
 
   return (
-    <section className="mt-8 rounded-lg bg-[#121732] p-6">
-      <Form {...form}>
-        <form onSubmit={handleSubmit(onSumitForm)}>
-          <article className="space-y-3">
-            <h2 className="font-medium text-white">General Information</h2>
-            <div className="grid grid-cols-4 gap-x-2">
-              <FormField
-                control={control}
-                name="buyPercentage"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Buy Percentage</FormLabel>
-                    <FormControl>
-                      <Input placeholder="" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={control}
-                name="sellPercentage"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Sell Percentage</FormLabel>
-                    <FormControl>
-                      <Input placeholder="" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={control}
-                name="takeProfit"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Buy Percentage</FormLabel>
-                    <FormControl>
-                      <Input placeholder="" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={control}
-                name="stopLoss"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Take Profit</FormLabel>
-                    <FormControl>
-                      <Input placeholder="" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
+    <>
+      <section className="mt-8 rounded-lg bg-[#121732] p-6">
+        <Form {...form}>
+          <form onSubmit={handleSubmit(onSumitForm)}>
+            <article className="space-y-3">
+              <h2 className="font-medium text-white">General Information</h2>
+              <div className="grid grid-cols-4 gap-x-2">
+                <FormField
+                  control={control}
+                  name="buyPercentage"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Buy Percentage</FormLabel>
+                      <FormControl>
+                        <Input placeholder="" {...field} />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="sellPercentage"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Sell Percentage</FormLabel>
+                      <FormControl>
+                        <Input placeholder="" {...field} />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="takeProfit"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Buy Percentage</FormLabel>
+                      <FormControl>
+                        <Input placeholder="" {...field} />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="stopLoss"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Take Profit</FormLabel>
+                      <FormControl>
+                        <Input placeholder="" {...field} />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="grid grid-cols-3 gap-x-2 gap-y-3">
+                <FormField
+                  control={control}
+                  name="buyPercentage"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Stop Loss</FormLabel>
+                      <FormControl>
+                        <Input placeholder="" {...field} />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="sellPercentage"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Auto-Buy Amount</FormLabel>
+                      <FormControl>
+                        <Input placeholder="" {...field} />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="takeProfit"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Liquidity</FormLabel>
+                      <FormControl>
+                        <Input placeholder="" {...field} />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </article>
+            <div className="py-6">
+              <Separator />
             </div>
-            <div className="grid grid-cols-3 gap-x-2 gap-y-3">
+            <article className="space-y-3">
+              <h2 className="font-medium text-white">Contract</h2>
               <FormField
                 control={control}
-                name="buyPercentage"
+                name="contactAddress"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Stop Loss</FormLabel>
+                    <FormLabel>Contact Address</FormLabel>
                     <FormControl>
                       <Input placeholder="" {...field} />
                     </FormControl>
                   </FormItem>
                 )}
               />
-              <FormField
-                control={control}
-                name="sellPercentage"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Auto-Buy Amount</FormLabel>
-                    <FormControl>
-                      <Input placeholder="" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={control}
-                name="takeProfit"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Liquidity</FormLabel>
-                    <FormControl>
-                      <Input placeholder="" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
+            </article>
+            <div className="flex justify-end space-x-2 py-4">
+              <Button type="button" variant="outline">
+                Cancel Snipe
+              </Button>
+              <Button type="button" variant="outline">
+                Force Sell
+              </Button>
+              <Button type="submit">Snipe</Button>
             </div>
-          </article>
-          <div className="py-6">
-            <Separator />
-          </div>
-          <article className="space-y-3">
-            <h2 className="font-medium text-white">Contract</h2>
-            <FormField
-              control={control}
-              name="contactAddress"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Contact Address</FormLabel>
-                  <FormControl>
-                    <Input placeholder="" {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-          </article>
-          <div className="flex justify-end space-x-2 py-4">
-            <Button type="button" variant="outline">
-              Cancel Snipe
-            </Button>
-            <Button type="button" variant="outline">
-              Force Sell
-            </Button>
-            <Button type="submit">Snipe</Button>
-          </div>
-        </form>
-      </Form>
-    </section>
+          </form>
+        </Form>
+      </section>
+      <h2 className="mt-8 text-white">Console</h2>
+      <textarea
+        placeholder="Starting Snipe....."
+        className="ring-none mt-5 min-h-[20vh] w-full resize-none bg-[#121732] p-5 text-sm text-white focus:outline-none"
+      >
+        Starting Snipe.....
+      </textarea>
+    </>
   )
 }
