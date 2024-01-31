@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 
 import { Header } from './_components/header'
-import { Sidebar } from './_components/sidebar'
+import { Sidebar } from './_components/Sidebar'
 
 type MainLayoutProps = {
   children: ReactNode
