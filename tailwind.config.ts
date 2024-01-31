@@ -17,7 +17,11 @@ const config: Config = {
           foreground: '#377FFD'
         },
         secondary: '#8F9BB7',
-        badge: '#FE5B01'
+        badge: '#FE5B01',
+        card: {
+          DEFAULT: '#121732',
+          foreground: '#1F233D'
+        }
       }
     }
   },
