@@ -1,7 +1,14 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Bell, CalendarDays, ChevronDown } from 'lucide-react'
+import {
+  Bell,
+  CopyPlus,
+  TrendingUp,
+  ChevronDown,
+  CalendarDays,
+  CircleDollarSign
+} from 'lucide-react'
 
 import { Badge } from '~/components/ui/badge'
 import { Button } from '~/components/ui/button'
@@ -11,6 +18,8 @@ import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover
 
 export default function Home(): JSX.Element {
   const [date, setDate] = useState<Date>()
+
+  // const cardStatistic = [{}]
 
   return (
     <>
@@ -75,6 +84,44 @@ export default function Home(): JSX.Element {
             <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
           </PopoverContent>
         </Popover>
+      </section>
+      <section className="mt-4 grid grid-flow-row grid-cols-4 gap-4">
+        <div className="w-full rounded-2xl bg-[#0452ef] px-7 py-7 text-white">
+          <header className="flex items-center gap-x-3">
+            <div className="rounded-full bg-white p-2">
+              <CircleDollarSign className="h-5 w-5 text-[#060B27]" />
+            </div>
+            <h4 className="text-lg">Total Earnings</h4>
+          </header>
+          <main className="mt-4">
+            <h2 className="text-2xl font-semibold">$45,556</h2>
+            <div className="mt-2 flex items-center gap-x-2 text-xs">
+              <div className="flex items-center space-x-1 text-[#20DF4A]">
+                <TrendingUp className="h-4 w-4" />
+                <span>+1,25%</span>
+              </div>
+              <p className="text-[#9BBFFE]">+1.6K this week</p>
+            </div>
+          </main>
+        </div>
+        <div className="text-secondary w-full rounded-2xl bg-[#121732] px-7 py-7">
+          <header className="flex items-center gap-x-3">
+            <div className="rounded-full bg-[#383c52] p-2">
+              <CopyPlus className="h-5 w-5 text-white" />
+            </div>
+            <h4 className="text-lg">Total Snipes</h4>
+          </header>
+          <main className="mt-4">
+            <h2 className="text-2xl font-semibold">12</h2>
+            <div className="mt-2 flex items-center gap-x-2 text-xs">
+              <div className="flex items-center space-x-1 text-[#20DF4A]">
+                <TrendingUp className="h-4 w-4" />
+                <span>+1,25%</span>
+              </div>
+              <p className="text-[#9BBFFE]">+1.6K this week</p>
+            </div>
+          </main>
+        </div>
       </section>
     </>
   )
