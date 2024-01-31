@@ -1,12 +1,17 @@
-import React from 'react'
-import { Bell, ChevronDown } from 'lucide-react'
+'use client'
+
+import React, { useState } from 'react'
+import { Bell, CalendarDays, ChevronDown } from 'lucide-react'
 
 import { Badge } from '~/components/ui/badge'
 import { Button } from '~/components/ui/button'
+import { Calendar } from '~/components/ui/calendar'
 import { User } from '~/components/custom-icons/user'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
 
 export default function Home(): JSX.Element {
+  const [date, setDate] = useState<Date>()
+
   return (
     <>
       <header className="flex flex-wrap items-start justify-between">
@@ -55,6 +60,22 @@ export default function Home(): JSX.Element {
           </Popover>
         </div>
       </header>
+      <section className="mt-8 flex flex-wrap items-center justify-between">
+        <h3 className="text-base text-white">Statistics</h3>
+        <Popover>
+          <PopoverTrigger className="relative flex cursor-pointer items-center gap-x-2 rounded-full border border-transparent bg-[#1F233D] px-2.5 py-1.5 transition duration-200 ease-in-out">
+            <CalendarDays className="h-5 w-5" />
+            <p className="pr-6 text-xs text-white">May 10, 2023 - May 20, 2023</p>
+            <ChevronDown className="absolute right-2 h-4 w-4" />
+          </PopoverTrigger>
+          <PopoverContent
+            className="border-border w-full bg-[#1F233D] text-sm text-white"
+            align="end"
+          >
+            <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+          </PopoverContent>
+        </Popover>
+      </section>
     </>
   )
 }
