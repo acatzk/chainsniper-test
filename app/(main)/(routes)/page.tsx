@@ -1,74 +1,32 @@
 'use client'
 
 import React, { useState } from 'react'
-import {
-  Bell,
-  UserPlus,
-  CopyPlus,
-  TrendingUp,
-  ChevronDown,
-  CalendarDays,
-  TrendingDown,
-  SwitchCamera,
-  CircleDollarSign
-} from 'lucide-react'
+import { Bell, ChevronDown, CalendarDays } from 'lucide-react'
 
 import { Badge } from '~/components/ui/badge'
 import { Button } from '~/components/ui/button'
 import { Calendar } from '~/components/ui/calendar'
 import { User } from '~/components/custom-icons/user'
+import { cardStatistic } from '~/constant/statistic-data'
+import { StatisticCard } from '~/components/statistic-card'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
-import { cn } from '~/lib/utils'
 
 export default function Home(): JSX.Element {
   const [date, setDate] = useState<Date>()
+  const [statData, setStatData] = useState(cardStatistic)
 
-  const cardStatistic = [
-    {
-      icon: CircleDollarSign,
-      title: 'Total Earnings',
-      earn: '$45,556',
-      trends: {
-        isTrend: true,
-        percentage: '+1,25%',
-        weekly: '+1.6K'
-      },
-      isActive: true
-    },
-    {
-      icon: CopyPlus,
-      title: 'Total Snipes',
-      earn: '12',
-      trends: {
-        isTrend: true,
-        percentage: '+1,25%',
-        weekly: '+1.6K'
-      },
-      isActive: false
-    },
-    {
-      icon: UserPlus,
-      title: 'Avg Percentage',
-      earn: '12,4%',
-      trends: {
-        isTrend: true,
-        percentage: '+1,25%',
-        weekly: '+1.6K'
-      },
-      isActive: false
-    },
-    {
-      icon: SwitchCamera,
-      title: 'Running Snipes',
-      earn: '2',
-      trends: {
-        isTrend: false,
-        percentage: '-2,5%',
-        weekly: '56'
-      },
-      isActive: false
+  const handleActive = (index: number): void => {
+    if (!statData) {
+      return
     }
-  ]
+
+    const updatedData = statData.map((stat, i) => ({
+      ...stat,
+      isActive: i === index ? !stat.isActive : false
+    }))
+
+    setStatData(updatedData)
+  }
 
   return (
     <>
@@ -134,40 +92,9 @@ export default function Home(): JSX.Element {
           </PopoverContent>
         </Popover>
       </section>
-      <section className="mt-4 grid grid-flow-row grid-cols-4 gap-4">
-        {cardStatistic?.map((stat, idx) => (
-          <div
-            key={idx}
-            className={cn(
-              'w-full rounded-2xl px-7 py-7',
-              stat.isActive ? 'bg-[#0452ef] text-white' : 'text-secondary bg-[#121732]'
-            )}
-          >
-            <header className="flex items-center gap-x-3">
-              <div className={cn('rounded-full p-2', stat.isActive ? 'bg-white' : 'bg-[#383c52]')}>
-                <stat.icon
-                  className={cn('h-4 w-4', stat.isActive ? 'text-[#060B27]' : 'text-white')}
-                />
-              </div>
-              <h4 className="text-base">{stat.title}</h4>
-            </header>
-            <main className="mt-4">
-              <h2 className="text-2xl font-semibold">{stat.earn}</h2>
-              <div className="mt-2 flex items-center gap-x-2 text-xs">
-                <div className="flex items-center space-x-1">
-                  {stat.trends.isTrend ? (
-                    <TrendingUp className="h-4 w-4 text-[#20DF4A]" />
-                  ) : (
-                    <TrendingDown className="h-4 w-4 text-[#FE5B01]" />
-                  )}
-                  <span>{stat.trends.percentage}</span>
-                </div>
-                <p className={cn(stat.isActive ? 'text-[#9BBFFE]' : 'text-[#7E808F]')}>
-                  {stat.trends.weekly} this week
-                </p>
-              </div>
-            </main>
-          </div>
+      <section className="mt-4 grid grid-flow-row gap-4 md:grid-cols-3 lg:grid-cols-4">
+        {statData?.map((stat, idx) => (
+          <StatisticCard key={idx} {...{ stat }} onClick={() => handleActive(idx)} />
         ))}
       </section>
     </>
