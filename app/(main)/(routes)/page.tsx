@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { ChevronDown, CalendarDays } from 'lucide-react'
 
 import { Calendar } from '~/components/ui/calendar'
+import { LineChart } from '~/components/line-chart'
 import { cardStatistic } from '~/constant/statistic-data'
 import { StatisticCard } from '~/components/statistic-card'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
@@ -36,7 +37,7 @@ export default function Home(): JSX.Element {
             <ChevronDown className="absolute right-2 h-4 w-4" />
           </PopoverTrigger>
           <PopoverContent
-            className="border-border w-full bg-[#1F233D] text-sm text-white"
+            className="w-full border-border bg-[#1F233D] text-sm text-white"
             align="end"
           >
             <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
@@ -47,6 +48,10 @@ export default function Home(): JSX.Element {
         {statData?.map((stat, idx) => (
           <StatisticCard key={idx} {...{ stat }} onClick={() => handleActive(idx)} />
         ))}
+      </section>
+      <section className="mt-4 rounded-2xl bg-[#121732] text-[#717383]">
+        <h2 className="px-6 pt-6 text-lg text-white">Chart Sample</h2>
+        <LineChart />
       </section>
     </>
   )
