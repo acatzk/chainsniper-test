@@ -6,6 +6,7 @@ import { ChevronDown, CalendarDays } from 'lucide-react'
 import { Calendar } from '~/components/ui/calendar'
 import { LineChart } from '~/components/line-chart'
 import { cardStatistic } from '~/constant/statistic-data'
+import { HistoryTable } from '~/components/history-table'
 import { StatisticCard } from '~/components/statistic-card'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
 
@@ -29,7 +30,7 @@ export default function Home(): JSX.Element {
   return (
     <>
       <section className="mt-8 flex flex-wrap items-center justify-between">
-        <h3 className="text-base text-white">Statistics</h3>
+        <h2 className="text-lg text-white">Statistics</h2>
         <Popover>
           <PopoverTrigger className="relative flex cursor-pointer items-center gap-x-2 rounded-full border border-transparent bg-[#1F233D] px-2.5 py-1.5 transition duration-200 ease-in-out">
             <CalendarDays className="h-5 w-5" />
@@ -52,6 +53,10 @@ export default function Home(): JSX.Element {
       <section className="mt-4 rounded-2xl bg-[#121732] text-[#717383]">
         <h2 className="px-6 pt-6 text-lg text-white">Chart Sample</h2>
         <LineChart />
+      </section>
+      <section className="mt-8">
+        <h2 className="text-lg text-white">History</h2>
+        <HistoryTable />
       </section>
     </>
   )
