@@ -1,4 +1,6 @@
-import { BarChart2, BriefcaseIcon } from 'lucide-react'
+import { BarChart2 } from 'lucide-react'
+
+import { BriefcaseIcon } from '~/components/custom-icons/briefcase-icon'
 
 export const links = [
   {
