@@ -16,7 +16,7 @@ export const StatisticCard = ({ stat, onClick }: StatisticCardProps): JSX.Elemen
       role="button"
       onClick={onClick}
       className={cn(
-        'relative w-full overflow-hidden rounded-2xl px-7 py-7',
+        'relative w-full overflow-hidden rounded-2xl px-7 py-7 transition duration-200 ease-in-out',
         stat.isActive ? 'bg-[#0452ef] text-white' : 'cursor-pointer bg-[#121732] text-secondary'
       )}
     >

@@ -11,25 +11,15 @@ import {
   CategoryScale, // x axis
   Chart as ChartJS
 } from 'chart.js'
+import { SaleData } from '~/constant/statistic-data'
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend, Tooltip, Filler)
 
-const salesData = [
-  { month: 'January', sales: 743 },
-  { month: 'February', sales: 332 },
-  { month: 'March', sales: 331 },
-  { month: 'April', sales: 120 },
-  { month: 'May', sales: 180 },
-  { month: 'June', sales: 250 },
-  { month: 'July', sales: 532 },
-  { month: 'August', sales: 632 },
-  { month: 'September', sales: 442 },
-  { month: 'October', sales: 231 },
-  { month: 'November', sales: 412 },
-  { month: 'December', sales: 311 }
-]
+type LineChartProps = {
+  salesData: SaleData[]
+}
 
-export const LineChart = (): JSX.Element => {
+export const LineChart = ({ salesData }: LineChartProps): JSX.Element => {
   const data = {
     labels: salesData.map((data) => data.month),
     datasets: [
