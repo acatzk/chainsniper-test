@@ -1,23 +1,18 @@
 'use client'
 
 import React, { useState } from 'react'
-import Datepicker from 'react-tailwindcss-datepicker'
 import { ChevronDown, CalendarDays } from 'lucide-react'
 
 import { LineChart } from '~/components/line-chart'
+import { Calendar } from '~/components/ui/calendar'
 import { HistoryTable } from '~/components/history-table'
 import { StatisticCard } from '~/components/statistic-card'
 import { cardStatistic, salesData } from '~/constant/statistic-data'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
 
 export default function Home(): JSX.Element {
-  const [value, setValue] = useState<{
-    startDate: Date | string
-    endDate: Date | string
-  }>({
-    startDate: 'Start Date',
-    endDate: 'End Date'
-  })
+  const [date, setDate] = useState<Date | undefined>(new Date())
+
   const [cardData, setCardData] = useState(cardStatistic)
 
   const [sales, setSales] = useState<
@@ -26,18 +21,6 @@ export default function Home(): JSX.Element {
       sales: number
     }>
   >(salesData)
-
-  const startDate = value?.startDate?.toLocaleString('en-US', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit'
-  })
-
-  const endDate = value?.endDate?.toLocaleString('en-US', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit'
-  })
 
   const handleActive = (index: number): void => {
     if (!cardStatistic) {
@@ -52,11 +35,7 @@ export default function Home(): JSX.Element {
     setCardData(updatedData)
   }
 
-  const handleValueChange = (
-    newValue: React.SetStateAction<{ startDate: Date | string; endDate: Date | string }>
-  ): void => {
-    setValue(newValue)
-
+  const handleValueChange = (): void => {
     const newSales = salesData.map((sales) => ({
       ...sales,
       sales: Math.floor(Math.random() * 500)
@@ -89,17 +68,28 @@ export default function Home(): JSX.Element {
         <Popover>
           <PopoverTrigger className="relative flex cursor-pointer items-center gap-x-2 rounded-full border border-transparent bg-[#1F233D] px-2.5 py-1.5 transition duration-200 ease-in-out">
             <CalendarDays className="h-5 w-5" />
-            <p className="pr-6 text-xs text-white">{`${startDate ?? 'Start Date'} - ${endDate ?? 'End Date'}`}</p>
+            <p className="pr-6 text-xs text-white">
+              {`${new Date().toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: '2-digit'
+              })} - ${
+                date?.toLocaleString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: '2-digit'
+                }) ?? 'Select Date'
+              }`}
+            </p>
             <ChevronDown className="absolute right-2 h-4 w-4" />
           </PopoverTrigger>
-          <PopoverContent
-            className="w-full border-border bg-[#1F233D] p-0 text-sm text-white"
-            align="end"
-          >
-            <Datepicker
-              value={value as any}
-              onChange={handleValueChange as any}
-              primaryColor={`blue`}
+          <PopoverContent className="w-full border-border bg-[#1F233D] p-0 text-sm" align="end">
+            <Calendar
+              mode="single"
+              selected={date}
+              onSelect={setDate}
+              onDayClick={handleValueChange}
+              className="text-secondary"
             />
           </PopoverContent>
         </Popover>
